@@ -49,11 +49,11 @@ def datastore():
 
 
 @datastore.command(name='import')
-@click.option('-f', '--file', required=True)
-def datastore_import(file):
+@click.option('-f', '--file', type=click.Path(exists=True), required=True)
+def datastore_import(filepath):
     """Create SQLite DB, populate it with the provided JSON data
     """
-    print("datastore import", file)
+    print("datastore import", filepath)
 
 
 @datastore.command(name='query')
