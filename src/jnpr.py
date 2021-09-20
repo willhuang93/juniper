@@ -1,9 +1,13 @@
 import click
+import datetime
 import json
+import sqlite3
 import yaml
-from GitHubApi import get_commits
+from .Database import initialize_tables, import_data, query_data
+from .GitHubApi import get_commits
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+DB_FILE = r'juniper.db'
 
 
 @click.group(context_settings=CONTEXT_SETTINGS)
@@ -21,7 +25,6 @@ def commit(repo_identifier, number, format):
     """Query a GitHub REST API for commit history on a git repo, process API results and, finally, print the filtered
     down result in YAML, or JSON, format
     """
-    print("commit", repo_identifier, number, format)
     subset_commits = []
     response = get_commits(repo_identifier=repo_identifier, num_of_commits=number)
 
@@ -50,18 +53,42 @@ def datastore():
 
 @datastore.command(name='import')
 @click.option('-f', '--file', type=click.Path(exists=True), required=True)
-def datastore_import(filepath):
+def datastore_import(file):
     """Create SQLite DB, populate it with the provided JSON data
     """
-    print("datastore import", filepath)
+    with sqlite3.connect(DB_FILE) as connection:
+
+        initialize_tables(connection)
+
+        with open(file, 'r') as f:
+            data = json.load(f)
+            import_data(data, connection)
+
+        sql = 'select * from orders;'
+        cursor = connection.cursor()
+        cursor.execute(sql)
+        output = cursor.fetchall()
+        for row in output:
+            print(row)
 
 
 @datastore.command(name='query')
-@click.option('-d', '--date', required=True)
+@click.option('-d', '--date', required=True, type=click.DateTime(formats=["%Y-%m-%d"]))
 def datastore_query(date):
     """Perform SQL queries on the DB
     """
-    print("datastore query", date)
+    with sqlite3.connect(DB_FILE) as connection:
+        on_or_before_data, after_data = query_data(date, connection)
+
+        for item_count, first_name, last_name, ordered_on in on_or_before_data:
+            print(f'{first_name} {last_name} ordered {item_count} item(s) '
+                  f'before or on {datetime.datetime.strftime(date, "%Y-%m-%d")}')
+
+        print()
+
+        for item_count, first_name, last_name, ordered_on in after_data:
+            print(f'{first_name} {last_name} ordered {item_count} item(s) '
+                  f'after {datetime.datetime.strftime(date, "%Y-%m-%d")}')
 
 
 if __name__ == '__main__':

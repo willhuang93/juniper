@@ -11,8 +11,9 @@ setup(
         'pytest',
         'pysqlite3',
     ],
-    entry_points='''
-        [console_scripts]
-        jnpr=scripts.jnpr:cmd
-    ''',
+    entry_points={
+        "console_scripts": [
+            "jnpr = src.jnpr:cmd",
+        ]
+    }
 )

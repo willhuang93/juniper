@@ -1,0 +1,126 @@
+{
+    "tables": [
+        {
+            "table": "clients",
+            "records": [
+                {
+                    "client_id": 1,
+                    "first_name": "John",
+                    "last_name": "Dough",
+                    "zipcode": 84211,
+                    "country": "USA"
+                },
+                {
+                    "client_id": 2,
+                    "first_name": "Teri",
+                    "last_name": "Dactyl",
+                    "zipcode": null,
+                    "country": "USA"
+                },
+                {
+                    "client_id": 3,
+                    "first_name": "Peg",
+                    "last_name": "Legge",
+                    "zipcode": 31482,
+                    "country": "USA"
+                },
+                {
+                    "client_id": 4,
+                    "first_name": "Bea",
+                    "last_name": "Mine",
+                    "zipcode": 13482,
+                    "country": "USA"
+                },
+                {
+                    "client_id": 5,
+                    "first_name": "Stan",
+                    "last_name": "Dupp",
+                    "zipcode": 95063,
+                    "country": "USA"
+                },
+                {
+                    "client_id": 5,
+                    "first_name": "Stan",
+                    "last_name": "Dupp",
+                    "zipcode": 95063,
+                    "country": "USA"
+                }
+            ]
+        },
+        {
+            "table": "orders",
+            "records": [
+                {
+                    "order_id": 343,
+                    "client_id": 1,
+                    "ordered_on": "2021-02-11"
+                },
+                {
+                    "order_id": 342,
+                    "client_id": 2,
+                    "ordered_on": "2021-02-11"
+                },
+                {
+                    "order_id": 341,
+                    "client_id": 2,
+                    "ordered_on": "2021-02-10"
+                },
+                {
+                    "order_id": 340,
+                    "client_id": 1,
+                    "ordered_on": "2021-02-10"
+                },
+                {
+                    "order_id": 339,
+                    "client_id": 1,
+                    "ordered_on": "2021-02-09"
+                },
+                {
+                    "order_id": 338,
+                    "client_id": 1,
+                    "ordered_on": "2021-02-09"
+                },
+                {
+                    "order_id": 337,
+                    "client_id": 1,
+                    "ordered_on": "2021-02-09"
+                },
+                {
+                    "order_id": 336,
+                    "client_id": 1,
+                    "ordered_on": "2021-02-09"
+                },
+                {
+                    "order_id": 335,
+                    "client_id": 1,
+                    "ordered_on": "2021-02-09"
+                },
+                {
+                    "order_id": 334,
+                    "client_id": 2,
+                    "ordered_on": "2021-02-09"
+                },
+                {
+                    "order_id": 333,
+                    "client_id": 2,
+                    "ordered_on": "2021-02-09"
+                },
+                {
+                    "order_id": 332,
+                    "client_id": 2,
+                    "ordered_on": "2021-02-09"
+                },
+                {
+                    "order_id": 331,
+                    "client_id": 4,
+                    "ordered_on": "2021-02-09"
+                },
+                {
+                    "order_id": 330,
+                    "client_id": 5,
+                    "ordered_on": "2021-02-09"
+                }
+            ]
+        }
+    ]
+}
