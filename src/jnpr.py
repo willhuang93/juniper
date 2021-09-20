@@ -2,7 +2,6 @@ import click
 import datetime
 import json
 import sqlite3
-import sys
 import yaml
 from src.Database import initialize_tables, import_data, query_data
 from src.GitHubApi import get_commits
