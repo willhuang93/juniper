@@ -9,7 +9,7 @@ setup(
         'Click',
         'requests',
         'pytest',
-        'pysqlite3',
+        'pyyaml',
     ],
     entry_points={
         "console_scripts": [

@@ -3,9 +3,10 @@ from datetime import datetime
 
 def initialize_tables(connection):
     """
+    This function initializes the tables for the SQLite3 Database.
 
-    :param connection:
-    :return:
+    :param connection:  SQLite3 connection object
+    :return:  None
     """
     clients_table = '''CREATE TABLE IF NOT EXISTS clients(
         client_id INT PRIMARY KEY,
@@ -29,18 +30,13 @@ def initialize_tables(connection):
 
 def import_data(data, connection):
     """
+    Inserts all data that matches the table schema previously defined into their appropriate tables.
 
-    :param data:
-    :param connection:
+    :param data: A dictionary object that holds the data to be inserted into the database
+    :param connection: SQLite3 Connection object
     :return:
     """
     def insert_client_data(records, connection):
-        """
-
-        :param records:
-        :param connection:
-        :return:
-        """
         cursor = connection.cursor()
 
         for record in records:
@@ -56,12 +52,6 @@ def import_data(data, connection):
             cursor.execute(sql, data_tuple)
 
     def insert_order_data(records, connection):
-        """
-
-        :param records:
-        :param connection:
-        :return:
-        """
         cursor = connection.cursor()
 
         for record in records:
@@ -85,10 +75,14 @@ def import_data(data, connection):
 
 def query_data(date, connection):
     """
+    The first part lists the number of orders made by each client on or before the given date
 
-    :param date:
-    :param connection:
-    :return:
+    Second part lists the number of orders made by each client after the given date
+
+    :param date: The date of which the SQL Query will use to SELECT data
+    :param connection: SQLite3 Connection object
+    :return: (The client/order data which is before the parameter date, the client/order data which is after the
+             parameter date)
     """
     cursor = connection.cursor()
 
